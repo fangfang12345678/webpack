@@ -15,18 +15,32 @@ module.exports = {
         filename: "index.html",
     })],
     devServer: {
-        port: 3000,
+        port: 30000,
         open: true
     },
     module: {
         rules: [{
-            test: /\.css$/,
-            use: [
-                "style-loader", "css-loader"
-            ]
-        }, {
-            test: /\.less$/,
-            use: ["style-loader", "css-loader", "less-loader"]
-        }]
+                test: /\.css$/,
+                use: [
+                    "style-loader", "css-loader"
+                ]
+            }, {
+                test: /\.less$/,
+                use: ["style-loader", "css-loader", "less-loader"]
+            },
+            {
+                test: /\.(png|jpg|gif|jpeg)$/i,
+                type: "asset",
+                generator: {
+                    filename: "images/[hash:6][ext]"
+                }
+            },
+            {
+                test: /\.js$/,
+                use: ['babel-loader']
+
+
+            }
+        ]
     }
 }
